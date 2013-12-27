@@ -21,6 +21,10 @@ int fingerCurrentType[3];
 int fingerInputType[3];
 int fingerRead[3];
 int keyRead[3];
+int buttonPin = A5;
+int buttonValue = 0;
+int mode = 0; //0 for xtion, 1 for ultrasonic
+int ledPin = 2;
 
 void setup()
   {
@@ -47,6 +51,12 @@ void loop()
   ultrasonicCM[0] = ultrasonic1.convert(microsec1, Ultrasonic::CM);
   ultrasonicCM[1] = ultrasonic2.convert(microsec2, Ultrasonic::CM);
   ultrasonicCM[2] = ultrasonic3.convert(microsec3, Ultrasonic::CM);
+  
+  buttonValue = analogRead(buttonPin);
+  if(buttonValue < 600){
+    // button pushed
+  }
+  
 
 //  cmMsec1 = ultrasonic1.convert(microsec1, Ultrasonic::CM);
 //  cmMsec2 = ultrasonic2.convert(microsec2, Ultrasonic::CM);
@@ -57,12 +67,12 @@ void loop()
 //  Serial.println(cmMsec2);
 //  Serial.print("CM3: ");
 //  Serial.println(cmMsec3);
-//  Serial.print("IRvalue1: ");
-//  Serial.println(IRvalue1);
-//  Serial.print("IRvalue2: ");
-//  Serial.println(IRvalue2);
-//  Serial.print("IRvalue3: ");
-//  Serial.println(IRvalue3);
+  Serial.print("IRvalue1: ");
+  Serial.println(IRvalue1);
+  Serial.print("IRvalue2: ");
+  Serial.println(IRvalue2);
+  Serial.print("IRvalue3: ");
+  Serial.println(IRvalue3);
 
 //  delay(1000);
     for(int i = 0; i < 3; i++){
@@ -72,6 +82,8 @@ void loop()
       Serial.println(fingerCurrentType[i]);
     }
     
+    if(IRvalue1 < 800 || IRvalue2 < 800 || IRvalue3 < 800){
+    digitalWrite(ledPin, LOW);
     for(int i = 0; i < 3; i++){
       if(ultrasonicCM[2-i] <= 50){
         keyRead[i] = 97 + i*4;
@@ -82,11 +94,15 @@ void loop()
       }else{
         keyRead[i] = 100 + i*4;
       }
+    
       
       Serial.println(keyRead[i]);
       Serial.print("type ");
       Serial.println(fingerCurrentType[i]);
     }
+  }else{
+    digitalWrite(ledPin, HIGH);
+  }
     
     for(int i = 0; i < 3; i++){
       if( keyRead[i] >= 97 && keyRead[i] <= 100 ){
