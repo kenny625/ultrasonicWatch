@@ -55,18 +55,21 @@ void loop()
   buttonValue = analogRead(buttonPin);
   if(buttonValue < 600){
     // button pushed
+    Serial.println("pushed");
+    Serial.write('z');
   }
-  
+  Serial.println("button");
+  Serial.println(buttonValue);
 
 //  cmMsec1 = ultrasonic1.convert(microsec1, Ultrasonic::CM);
 //  cmMsec2 = ultrasonic2.convert(microsec2, Ultrasonic::CM);
 //  cmMsec3 = ultrasonic3.convert(microsec3, Ultrasonic::CM);
-//  Serial.print("CM1: ");
-//  Serial.println(cmMsec1);
-//  Serial.print("CM2: ");
-//  Serial.println(cmMsec2);
-//  Serial.print("CM3: ");
-//  Serial.println(cmMsec3);
+  Serial.print("CM1: ");
+  Serial.println(ultrasonicCM[0]);
+  Serial.print("CM2: ");
+  Serial.println(ultrasonicCM[1]);
+  Serial.print("CM3: ");
+  Serial.println(ultrasonicCM[2]);
   Serial.print("IRvalue1: ");
   Serial.println(IRvalue1);
   Serial.print("IRvalue2: ");
