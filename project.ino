@@ -55,34 +55,34 @@ void loop()
   buttonValue = analogRead(buttonPin);
   if(buttonValue < 600){
     // button pushed
-    Serial.println("pushed");
+    //Serial.println("pushed");
     Serial.write('z');
   }
-  Serial.println("button");
-  Serial.println(buttonValue);
+  //Serial.println("button");
+  //Serial.println(buttonValue);
 
 //  cmMsec1 = ultrasonic1.convert(microsec1, Ultrasonic::CM);
 //  cmMsec2 = ultrasonic2.convert(microsec2, Ultrasonic::CM);
 //  cmMsec3 = ultrasonic3.convert(microsec3, Ultrasonic::CM);
-  Serial.print("CM1: ");
-  Serial.println(ultrasonicCM[0]);
-  Serial.print("CM2: ");
-  Serial.println(ultrasonicCM[1]);
-  Serial.print("CM3: ");
-  Serial.println(ultrasonicCM[2]);
-  Serial.print("IRvalue1: ");
-  Serial.println(IRvalue1);
-  Serial.print("IRvalue2: ");
-  Serial.println(IRvalue2);
-  Serial.print("IRvalue3: ");
-  Serial.println(IRvalue3);
+  ////Serial.print("CM1: ");
+  //Serial.println(ultrasonicCM[0]);
+  //Serial.print("CM2: ");
+  //Serial.println(ultrasonicCM[1]);
+  //Serial.print("CM3: ");
+  //Serial.println(ultrasonicCM[2]);
+  //Serial.print("IRvalue1: ");
+  //Serial.println(IRvalue1);
+  //Serial.print("IRvalue2: ");
+  //Serial.println(IRvalue2);
+  //Serial.print("IRvalue3: ");
+  //Serial.println(IRvalue3);
 
 //  delay(1000);
     for(int i = 0; i < 3; i++){
       keyRead[i] = Serial.read();
-      Serial.println(keyRead[i]);
-      Serial.print("type ");
-      Serial.println(fingerCurrentType[i]);
+      //Serial.println(keyRead[i]);
+      //Serial.print("type ");
+      //Serial.println(fingerCurrentType[i]);
     }
     
     if(IRvalue1 < 800 || IRvalue2 < 800 || IRvalue3 < 800){
@@ -99,9 +99,9 @@ void loop()
       }
     
       
-      Serial.println(keyRead[i]);
-      Serial.print("type ");
-      Serial.println(fingerCurrentType[i]);
+      //Serial.println(keyRead[i]);
+      //Serial.print("type ");
+      //Serial.println(fingerCurrentType[i]);
     }
   }else{
     digitalWrite(ledPin, HIGH);
@@ -178,7 +178,7 @@ void loop()
         fingerCount[i] = 0;
         fingerCurrentType[i] = fingerRead[i];
         analogWrite(PIN_POSITION[i], 0);
-        Serial.println("new count");
+        //Serial.println("new count");
       }
     }
     
